@@ -135,6 +135,40 @@ app.post('/login', function (req, res) {
 
 
 
+//Select User
+app.get('/users', auth, function (req, res) {
+    res.send(req.user);
+})
+
+// Profile Update
+app.post('/updateuser/:id', function (req, res) {
+    var fullname = req.body.fullname;
+    var email = req.body.email;
+    var phone = req.body.phone;
+    var address = req.body.address;
+    var image = req.body.image;
+    var uid = req.params.id;
+    console.log(req.body);
+    user.updateOne({ _id: new ObjectID(uid) },
+        {
+            $set: {
+                fullname: fullname,
+                email: email,
+                phone: phone,
+                address: address,
+                image: image
+            }
+        }).then(function () {
+            console.log('Success')
+            res.send(JSON.stringify('profile_updated'));
+        }).catch(function () {
+            console.log('error')
+        })
+
+})
+
+
+
 
 
 app.listen(8080)
