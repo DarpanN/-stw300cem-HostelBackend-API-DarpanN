@@ -250,7 +250,31 @@ app.get('/getgirls', function (req, res) {
     })
 })
 
+//For Delete Hostel
+app.delete('/deletehostel/:id', function (req, res) {
 
+    hostel.findByIdAndDelete(req.params.id).then(function () {
+        res.send('Hostel_deleted')
+    }).catch(function (e) {
+        res.send(e)
+    })
+    room.deleteMany({ hostelId: req.params.id }).then(function () {
+        console.log("room deleted")
+    }).catch(function (e) {
+        res.send(e)
+    })
+})
+
+//For Edit Hostel
+app.get('/edithostel/:id', function (req, res) {
+    var id = req.params.id;
+    hostel.find({ _id: new ObjectID(id) }).then(function (hostel) {
+        res.send(hostel)
+        res.json({ msg: "hostel_delete" })
+    }).catch(function (e) {
+        res.send(e)
+    })
+})
 
 
 app.listen(8080)
