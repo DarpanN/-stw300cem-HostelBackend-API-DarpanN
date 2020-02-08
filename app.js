@@ -217,5 +217,40 @@ app.post('/addhostel', function (req, res) {
 })
 
 
+//View Hostels
+app.get('/viewhostel', function (req, res) {
+    var mysort = { _id: -1 };
+    hostel.find().sort(mysort).then(function (hostel) {
+        res.send(hostel);
+
+    }).catch(function (e) {
+        res.send(e);
+    })
+})
+
+//Get Boys Hostel
+app.get('/getboys', function (req, res) {
+    var mysort = { _id: -1 };
+    var query = { hosteltype: "Boys" }
+    hostel.find(query).sort(mysort).then(function (hostel) {
+        res.send(hostel);
+    }).catch(function (e) {
+        res.send(e)
+    })
+})
+
+//Get Girls Hostel
+app.get('/getgirls', function (req, res) {
+    var mysort = { _id: -1 };
+    var query = { hosteltype: "Girls" }
+    hostel.find(query).sort(mysort).then(function (hostel) {
+        res.send(hostel);
+    }).catch(function (e) {
+        res.send(e)
+    })
+})
+
+
+
 
 app.listen(8080)
