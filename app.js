@@ -168,6 +168,53 @@ app.post('/updateuser/:id', function (req, res) {
 })
 
 
+// For User Logout
+app.post('/users/logout', auth, async (req, res) => {
+    try {
+        req.user.tokens = []
+        await req.user.save()
+        res.send()
+    } catch (e) {
+        res.status(500).send()
+    }
+})
+
+//For Add hostel
+app.post('/addhostel', function (req, res) {
+    var hostelname = req.body.hostelname;
+    var hosteltype = req.body.hosteltype;
+    var email = req.body.email;
+    var address = req.body.address;
+    var phone = req.body.phone;
+    var description = req.body.description;
+    var image = req.body.image;
+
+    var HostelData = new hostel({
+        hostelname: hostelname,
+        hosteltype: hosteltype,
+        email: email,
+        address: address,
+        phone: phone,
+        description: description,
+        image: image
+    })
+    hostel.findOne({
+        hostelname: hostelname
+    }).then(function (data) {
+        if (data) {
+            res.json({ msg: "hostel_exist" });
+        }
+        else {
+            HostelData.save().then(function (data) {
+                res.json({ msg: "hostel_not_exist" })
+            })
+
+        }
+    }).catch(function (e) {
+        res.send(e);
+    })
+
+})
 
 
 
