@@ -277,4 +277,44 @@ app.get('/edithostel/:id', function (req, res) {
 })
 
 
+//For Update Hostel
+app.post('/updatehostel', function (req, res) {
+    var hostelname = req.body.hostelname;
+    var hosteltype = req.body.hosteltype;
+    var email = req.body.email;
+    var address = req.body.address;
+    var phone = req.body.phone;
+    var description = req.body.description;
+    var uid = req.body.id;
+
+    console.log(req.body);
+    hostel.updateOne({ _id: new ObjectID(uid) },
+        {
+            $set: {
+                hostelname: hostelname,
+                hosteltype: hosteltype,
+                email: email,
+                address: address,
+                phone: phone,
+                description: description
+            }
+        }).then(function () {
+            console.log('Success')
+        }).catch(function () {
+            console.log('error')
+        })
+    room.updateMany({ hostelId: uid },
+        {
+            $set: {
+                hostelname: hostelname
+            }
+        }).then(function () {
+            console.log('Success')
+        }).catch(function () {
+            console.log('error')
+        })
+
+})
+
+
 app.listen(8080)
