@@ -98,4 +98,43 @@ app.post('/register', function (req, res) {
 
 
 
+
+//User Login For Web
+app.post("/login22", async function (req, res) {
+
+    const User = await user.checkCrediantialsDb(req.body.email,
+        req.body.password)
+    const token = await User.generateAuthToken()
+    res.send({ token: token, User: User })
+    console.log(User);
+})
+
+//User Login For Android
+app.post('/login', function (req, res) {
+    var email = req.body.email;
+    var password = req.body.password;
+    console.log(req.body);
+
+    user.find({
+        email: email,
+        password: password
+
+    }).then(function (logindata) {
+
+        if (logindata) {
+            console.log(logindata)
+            res.send(JSON.stringify(logindata));
+        }
+        else {
+            res.send(JSON.stringify('invalid_login'))
+        }
+    }).catch(function (e) {
+        res.send(e)
+    })
+})
+
+
+
+
+
 app.listen(8080)
