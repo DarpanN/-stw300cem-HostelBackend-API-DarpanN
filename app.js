@@ -317,4 +317,44 @@ app.post('/updatehostel', function (req, res) {
 })
 
 
+
+//For  Add Room
+app.post('/add_hostel_room', function (req, res) {
+    var roomtype = req.body.roomtype;
+    var bed = req.body.bed;
+    var price = req.body.price;
+    var hostelId = req.body.hostelId;
+    var hostelname = req.body.hostelname;
+
+    console.log(req.body);
+
+    var RoomData = new room({
+        roomtype: roomtype,
+        bed: bed,
+        price: price,
+        hostelId: hostelId,
+        hostelname: hostelname
+    })
+    RoomData.save().then(function () {
+        res.json({ msg: "room_saved" })
+    }).catch(function (e) {
+        res.send(e)
+    })
+
+})
+
+//For View Room
+app.get('/viewrooms', function (req, res) {
+    var mysort = { _id: -1 };
+    room.find().sort(mysort).then(function (room) {
+        res.send(room);
+    }).catch(function (e) {
+        res.send(e);
+    })
+})
+
+
+
+
+
 app.listen(8080)
