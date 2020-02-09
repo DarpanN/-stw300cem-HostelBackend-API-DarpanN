@@ -354,6 +354,25 @@ app.get('/viewrooms', function (req, res) {
 })
 
 
+//For Edit room
+app.get('/edit_hostel_room/:id', function (req, res) {
+    var id = req.params.id;
+    room.find({ _id: new ObjectID(id) }).then(function (room) {
+        res.send(room)
+        res.json({ msg: "room_edited" })
+    }).catch(function (e) {
+        res.send(e)
+    })
+})
+
+// For Delete Room
+app.delete('/delete_hostel_room/:id', function (req, res) {
+    room.findByIdAndDelete(req.params.id).then(function () {
+        res.json({ msg: "room_delete" })
+    }).catch(function (e) {
+        res.send(e)
+    })
+})
 
 
 
