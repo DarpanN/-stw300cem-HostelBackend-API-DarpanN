@@ -412,4 +412,53 @@ app.get('/get_room/:id', function (req, res) {
 })
 
 
+
+//For User Message
+app.post('/send_user_message', function (req, res) {
+    var fullname = req.body.fullname;
+    var email = req.body.email;
+    var phone = req.body.phone;
+    var hostelname = req.body.hostelname;
+    var message = req.body.message;
+    console.log(req.body);
+
+    var MessageData = new Message({
+        fullname: fullname,
+        email: email,
+        phone: phone,
+        hostelname: hostelname,
+        message: message
+    })
+    MessageData.save().then(function () {
+        res.send(JSON.stringify('Message_sent'));
+    }).catch(function (e) {
+        res.send(e)
+    })
+
+})
+
+//View User Messages
+app.get('/viewmessage', function (req, res) {
+    var mysort = { _id: -1 };
+    Message.find().sort(mysort).then(function (Message) {
+        res.send(Message);
+    }).catch(function (e) {
+        res.send(e);
+    })
+})
+
+//Delete User Message
+app.delete('/delete_message/:id', function (req, res) {
+    Message.findByIdAndDelete(req.params.id).then(function () {
+        console.log(req.param.id);
+        res.json({ msg: "message_delete" })
+    }).catch(function (e) {
+        res.send(e)
+    })
+})
+
+
+
+
+
 app.listen(8080)
