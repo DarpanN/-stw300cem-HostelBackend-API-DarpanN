@@ -459,6 +459,42 @@ app.delete('/delete_message/:id', function (req, res) {
 
 
 
+//For  User Review
+app.post('/user_review', function (req, res) {
+    var fullname = req.body.fullname;
+    var review = req.body.review;
+    var ratting = req.body.ratting;
+    var hostelname = req.body.hostelname;
+    var hostelId = req.body.hostelId;
+    console.log(req.body);
+
+    var ReviewData = new Review({
+        fullname: fullname,
+        review: review,
+        ratting: ratting,
+        hostelname: hostelname,
+        hostelId: hostelId
+    })
+    ReviewData.save().then(function () {
+        res.send(JSON.stringify('Review_sent'));
+    }).catch(function (e) {
+        res.send(e)
+    })
+
+})
+
+//Get User Revies
+app.get('/get_review/:id', function (req, res) {
+    var id = req.params.id;
+    Review.find({ hostelId: new ObjectID(id) }).then(function (Review) {
+        res.send(Review)
+        res.json({ msg: "user_review" })
+    }).catch(function (e) {
+        res.send(e)
+    })
+})
+
+
 
 
 app.listen(8080)
