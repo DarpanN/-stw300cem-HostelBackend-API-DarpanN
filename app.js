@@ -376,4 +376,40 @@ app.delete('/delete_hostel_room/:id', function (req, res) {
 
 
 
+//For Update Room
+app.post('/update_hostel_room', function (req, res) {
+    var roomtype = req.body.roomtype;
+    var bed = req.body.bed;
+    var price = req.body.price;
+    var uid = req.body.id;
+
+    console.log(req.body);
+    room.updateOne({ _id: new ObjectID(uid) },
+        {
+            $set: {
+                roomtype: roomtype,
+                bed: bed,
+                price: price
+            }
+        }).then(function () {
+            console.log('Success')
+        }).catch(function () {
+            console.log('error')
+        })
+
+})
+
+//For Get Room
+app.get('/get_room/:id', function (req, res) {
+    var id = req.params.id;
+    console.log(id);
+    room.find({ hostelId: new ObjectID(id) }).then(function (room) {
+        res.send(room)
+        res.json({ msg: "room_edited" })
+    }).catch(function (e) {
+        res.send(e)
+    })
+})
+
+
 app.listen(8080)
