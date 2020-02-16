@@ -2,7 +2,7 @@
 Coventry Student Id: 10288638
 
 ## Hostel Booking Management System
-##Introduction
+## Introduction
 The hostel booking management system is Android based software application to provide students accommodation more efficiently. 
 This application keeps details of the hostellers and applied students. It is an Android application developed by using java 
 programming language. To build this application needed softwares Android Studio. It support application version API 24 Android 7:(Nougat) or more. This appliction is supported by API backend nodejs it is used to make communication between the system and
@@ -42,7 +42,7 @@ The administrator staff can utilize all the facility provided by the software an
 •	Student can update thier account.
 •	Student can rate hostel.
 
-##API DOCCUMENTATION
+## API DOCCUMENTATION
 1. ADMIN is added by system.
 2. User Register: User can fill all the given form to create account like Name, Email, Password, Address etc.
 3. User Login: User can login with their Email and Password
@@ -88,12 +88,11 @@ which must be defined in advanced for the JSON Structure. To serialise JSON we n
 it into Gson first. We need to add the following dependencies in our build.grade file.
 
 
-##API Link:
+## API Link:
 # https://github.com/DarpanN/-stw300cem-HostelBackend-API-DarpanN.git
 # https://github.com/softwarica-github/t2-backend-api-DarpanN.git
 # https://youtu.be/u4taYwETzjM
 
-##
 ## Conclusion
 The development of this application done by using Software Android Studio in android programming language with java. 
 HOSTEL BOOKING MANAGEMENT SYSTEM is very useful for students want to stay in hostel. 
