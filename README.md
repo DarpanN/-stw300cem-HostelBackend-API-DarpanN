@@ -65,6 +65,12 @@ Step2: Open Android Studio and run code.
 step3: Email: darpan@gmail.com
 step4: Password: darpan
 
+## API Link:
+# https://github.com/DarpanN/-stw300cem-HostelBackend-API-DarpanN.git
+
+## Youtube Link
+# https://youtu.be/u4taYwETzjM
+
 ## Future Work
 1. Payment through online
 2. Location Map Implements
@@ -86,12 +92,6 @@ Retrofit 2 by default leverages OkHttp as the networking layer and is built on t
 Retrofit automatically serialises the JSON response using a POJO(Plain Old Java Object) 
 which must be defined in advanced for the JSON Structure. To serialise JSON we need a converter to convert 
 it into Gson first. We need to add the following dependencies in our build.grade file.
-
-
-## API Link:
-# https://github.com/DarpanN/-stw300cem-HostelBackend-API-DarpanN.git
-# https://github.com/softwarica-github/t2-backend-api-DarpanN.git
-# https://youtu.be/u4taYwETzjM
 
 ## Conclusion
 The development of this application done by using Software Android Studio in android programming language with java. 
